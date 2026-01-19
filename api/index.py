@@ -1,23 +1,23 @@
 import os
 import sys
 
-# Add project root to Python path
+# Add SkyErp folder to Python path (DO NOT import it)
 sys.path.insert(
     0,
     os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 )
 
-# Correct Django settings module
+# Set correct Django settings module
 os.environ.setdefault(
     'DJANGO_SETTINGS_MODULE',
     'skyerpnext.settings'
 )
 
-# Run Vercel setup (optional)
+# Run Vercel setup (migrate, collectstatic)
 try:
     import manage_vercel
-except ImportError:
-    pass
+except ImportError as e:
+    print("manage_vercel import failed:", e)
 
 from django.core.asgi import get_asgi_application
 
